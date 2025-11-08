@@ -11,6 +11,7 @@ import Water from "../assets/images/water.svg";
 import moment from "moment";
 import { weatherCodesMapping } from "../assets/utils.js";
 import HourlyForecast from "./HourlyForecast.jsx";
+import UnitMatrixComp from "./UnitMatrixComp.jsx";
 
 export default function SearchResult({
   currentWeatherData,
@@ -129,6 +130,66 @@ export default function SearchResult({
 
       <div className="flex justify-between" style={{ marginTop: "24px" }}>
         <HourlyForecast hourlyData={hourlyForecast} />
+      </div>
+      <div className="flex items-center" style={{ columnGap: "20px" }}>
+        <div className="current-time-metrix">
+          <CardLayout className="unit-metrix-card-layout">
+            <div className="unit-metrix-container" style={{ marginTop: "0px" }}>
+              <UnitMatrixComp
+                label="Temperature"
+                value={Math.floor(currentWeatherData[0]?.value?.temperature2m)}
+                unit="℃"
+              />
+              <UnitMatrixComp
+                label="Wind"
+                value={Math.floor(currentWeatherData[0]?.value?.windSpeed)}
+                unit="km/hr"
+              />
+            </div>
+            <div className="unit-metrix-container">
+              <UnitMatrixComp
+                label="Humdity"
+                value={Math.floor(currentWeatherData[0]?.value?.humidity)}
+                unit="%"
+              />
+              <UnitMatrixComp
+                label="Visibility"
+                value={Math.floor(
+                  currentWeatherData[0]?.value?.visibility / 1000
+                )}
+                unit="km"
+              />
+            </div>
+            <div className="unit-metrix-container">
+              <UnitMatrixComp
+                label="Feels like"
+                value={Math.floor(
+                  currentWeatherData[0]?.value?.apparentTemperature
+                )}
+                unit="℃"
+              />
+              <UnitMatrixComp
+                label="Chance of Rain"
+                value={Math.floor(
+                  currentWeatherData[0]?.value?.precipitationSum
+                )}
+                unit="mm"
+              />
+            </div>
+            <div className="unit-metrix-container">
+              <UnitMatrixComp
+                label="Pressure"
+                value={Math.floor(currentWeatherData[0]?.value?.temperature2m)}
+                unit="hpa"
+              />
+              <UnitMatrixComp
+                label="Cloud Cover"
+                value={Math.floor(currentWeatherData[0]?.value?.temperature2m)}
+                unit="%"
+              />
+            </div>
+          </CardLayout>
+        </div>
       </div>
     </div>
   );
