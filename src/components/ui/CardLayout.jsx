@@ -1,9 +1,9 @@
 import React from "react";
 
-const CardLayout = ({ children }) => {
+const CardLayout = (props) => {
   return (
-    <div className={`card-container`}>
-      {children}
+    <div className={`card-container ${props.className ?? ""}`}>
+      {props.children}
     </div>
   );
 };

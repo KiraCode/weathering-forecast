@@ -247,6 +247,7 @@ const App = () => {
           }
           dailyForecast={dailyForecast}
           forecastLocation={forecastLocation}
+          hourlyForecast={hourlyForecast}
         />
       )}
       <p className="copyright-text">&copy; WSA. All Rights Reserved</p>

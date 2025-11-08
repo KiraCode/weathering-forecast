@@ -10,9 +10,11 @@ import Water from "../assets/images/water.svg";
 
 import moment from "moment";
 import { weatherCodesMapping } from "../assets/utils.js";
+import HourlyForecast from "./HourlyForecast.jsx";
 
 export default function SearchResult({
   currentWeatherData,
+  hourlyForecast,
   forecastLocation,
   dailyForecast,
 }) {
@@ -125,16 +127,8 @@ export default function SearchResult({
         </div>
       </CardLayout>
 
-      <div
-        className="flex justify-between daily-forecast-section"
-        style={{ marginTop: "24px", columnGap: "12px" }}
-      >
-        {Object.keys(dailyForecast)?.length > 0 &&
-          Object.keys(dailyForecast).map((day) => {
-            return (
-              <DayForecastCard key={day} data={dailyForecast[day]} date={day} />
-            );
-          })}
+      <div className="flex justify-between" style={{ marginTop: "24px" }}>
+        <HourlyForecast hourlyData={hourlyForecast} />
       </div>
     </div>
   );
