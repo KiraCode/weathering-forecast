@@ -1,7 +1,7 @@
-import Sun from "../src/assets/images/sun.svg";
-import Rain from "../src/assets/images/rain.svg";
-import Thunder from "../src/assets/images/thunder.svg";
-import Cloudy from "../src/assets/images/cloudy.svg";
+import Sun from "../assets/images/sun.svg";
+import Rain from "../assets/images/rain.svg";
+import Thunder from "../assets/images/thunder.svg";
+import Cloudy from "../assets/images/cloudy.svg";
 
 export const weatherCodesMapping = {
   0: { label: "Clear Sky", img: Sun },
