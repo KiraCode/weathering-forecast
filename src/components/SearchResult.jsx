@@ -12,6 +12,7 @@ import moment from "moment";
 import { weatherCodesMapping } from "../assets/utils.js";
 import HourlyForecast from "./HourlyForecast.jsx";
 import UnitMatrixComp from "./UnitMatrixComp.jsx";
+import SevenDayForecast from "./SevenDayForecast.jsx";
 
 export default function SearchResult({
   currentWeatherData,
@@ -190,7 +191,9 @@ export default function SearchResult({
             </div>
           </CardLayout>
         </div>
+        <SevenDayForecast dailyForecast={dailyForecast} />
       </div>
+      {/* <TempGraph hourlyData={hourlyForecast} /> */}
     </div>
   );
 }
