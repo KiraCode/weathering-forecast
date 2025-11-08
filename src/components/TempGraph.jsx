@@ -67,7 +67,7 @@ const TempGraph = ({ hourlyData }) => {
       ? hourlyData?.map((item) =>Math.floor(item.value?.temperature2m))
       : [];
   return (
-    <CardLayout className="temp-graph-layout">
+    <CardLayout className="temp-graph-card-layout">
       <div className="flex items-center">
         <img src={Clock} alt="clock" />
         <p className="item-format-text">24-hour Forecast</p>
