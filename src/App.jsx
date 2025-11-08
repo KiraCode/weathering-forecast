@@ -212,7 +212,26 @@ const App = () => {
 
   useEffect(() => {
     setDataLoading(true);
-    fetchWeather();
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        // extract latitude and logitude from thr position object
+        const { latitude, longitude } = position.coords;
+        fetch(
+          `https://nominatim.openstreetmap.org/reverse.php?lat=${latitude}&lon=${longitude}&zoom=18&format=jsonv2`
+        )
+          .then((response) => response.json())
+          .then((location) => {
+            setForecastLocation({
+              label: `${location?.address?.city}, ${location?.address?.state}, ${location?.address?.country}`,
+              lat: location?.lat,
+              lon: location?.lon,
+            });
+            fetchWeather(location.lat, location.lon);
+          });
+      });
+    } else {
+      fetchWeather();
+    }
   }, []);
 
   const clickHandler = (searchItem) => {

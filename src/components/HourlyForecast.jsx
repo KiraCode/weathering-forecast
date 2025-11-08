@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CardLayout from "./ui/CardLayout";
 import LeftNav from "../assets/images/left-nav.svg";
 import RightNav from "../assets/images/right-nav.svg";
@@ -7,13 +7,55 @@ import RightNavGray from "../assets/images/right-nav-gray.svg";
 import HourComp from "./HourComp";
 
 const HourlyForecast = ({ hourlyData }) => {
+  const [disableLeftNavigation, setDisableLeftNavigation] = useState(true);
+  const [disableRightNavigation, setDisableRightNavigation] = useState(false);
+
+  const scrollRight = () => {
+    if (disableRightNavigation) return;
+
+    const scrollVariable = document.querySelector(
+      ".hourly-forecast-card-layout"
+    );
+    setDisableLeftNavigation(false);
+    scrollVariable.scrollBy({ left: 720, behaviour: "smooth" });
+
+    if (
+      Math.floor(scrollVariable.scrollLeft) + scrollVariable.clientWidth + 1 >=
+      scrollVariable.scrollWidth
+    ) {
+      setDisableRightNavigation(true);
+    }
+  };
+
+  const scrollLeft = () => {
+    if (disableLeftNavigation) return;
+
+    const scrollVariable = document.querySelector(
+      ".hourly-forecast-card-layout"
+    );
+    setDisableRightNavigation(false);
+    scrollVariable.scrollBy({ left: -720, behaviour: "smooth" });
+
+    if (scrollVariable.scrollLeft === 0) {
+      setDisableLeftNavigation(true);
+    }
+  };
+
   return (
     <div className="hourly-forecast-container">
       <div className="hourly-title-container">
         <p className="forecast-title">Hourly Weather</p>
         <div className="hourly-navigation-arrow">
-          <img src={LeftNav} id="right-nav-btn" />
-          <img src={RightNav} id="right-nav-btn" />
+          <img
+            src={disableLeftNavigation ? LeftNavGray : LeftNav}
+            id="right-nav-btn"
+            onClick={scrollLeft}
+          />
+          <img
+            src={disableRightNavigation ? RightNavGray : RightNav}
+            id="right-nav-btn"
+            onClick={scrollRight}
+          />
         </div>
       </div>
       <CardLayout className="p-0 hourly-forecast-card-layout">
